@@ -1,4 +1,7 @@
 baseURL: "https://blog.weiyangli.space/"
+# 资源一律用相对路径：无论通过 http / https、正式域名还是 github.io 临时地址访问，样式都能加载
+relativeURLs: true
+canonifyURLs: false
 title: "蔚洋的博客"
 languageCode: "zh-cn"
 defaultContentLanguage: "zh-cn"

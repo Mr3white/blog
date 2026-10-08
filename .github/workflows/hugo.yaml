@@ -45,7 +45,7 @@ jobs:
           HUGO_ENVIRONMENT: production
           HUGO_CACHEDIR: ${{ runner.temp }}/hugo_cache
         run: |
-          hugo --gc --minify --baseURL "${{ steps.pages.outputs.base_url }}/"
+          hugo --gc --minify      # baseURL 以 hugo.yaml 为准，不用 Pages 临时地址覆盖
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
