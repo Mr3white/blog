@@ -1,0 +1,47 @@
+/* 中文正文：稍微放宽行距，首选系统中文字体 */
+:root {
+  --content-width: 760px;
+}
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB",
+    "Microsoft YaHei", "Noto Sans CJK SC", "Source Han Sans SC", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+.post-content {
+  line-height: 1.8;
+}
+.post-content p {
+  margin-bottom: 1.2em;
+}
+
+/* 相册网格 */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 12px;
+  margin: 1.5rem 0;
+}
+.gallery__item {
+  display: block;
+  overflow: hidden;
+  border-radius: var(--radius);
+  background: var(--code-bg);
+  box-shadow: none !important;
+}
+.gallery__item img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  transition: transform .25s ease;
+}
+.gallery__item:hover img {
+  transform: scale(1.03);
+}
+
+/* 公式块可横向滚动，手机上不撑破版面 */
+.katex-display {
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: .25em 0;
+}

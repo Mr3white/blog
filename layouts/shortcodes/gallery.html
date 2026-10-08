@@ -1,0 +1,20 @@
+{{- /*
+  相册 shortcode：把当前 page bundle 目录里的所有图片按文件名排序铺成网格。
+  用法：{{< gallery >}}            所有图片（cover.jpg 除外）
+        {{< gallery match="day1-*" >}}  只取匹配的文件
+  缩略图 / 大图 都由 Hugo 在构建时生成，仓库里只放原图。
+*/ -}}
+{{- $match := .Get "match" | default "*" -}}
+{{- $images := .Page.Resources.Match (printf "%s.{jpg,jpeg,png,webp}" $match) -}}
+<div class="gallery">
+{{- range $images -}}
+  {{- if ne .Name "cover.jpg" -}}
+    {{- $thumb := .Fill "900x600 q85" -}}
+    {{- $full := .Resize "2000x q90" -}}
+    {{- $caption := .Params.caption | default .Title -}}
+    <a class="gallery__item" href="{{ $full.RelPermalink }}" target="_blank" rel="noopener" title="{{ $caption }}">
+      <img src="{{ $thumb.RelPermalink }}" width="{{ $thumb.Width }}" height="{{ $thumb.Height }}" loading="lazy" alt="{{ $caption }}">
+    </a>
+  {{- end -}}
+{{- end -}}
+</div>

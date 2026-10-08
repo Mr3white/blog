@@ -1,0 +1,166 @@
+baseURL: "https://blog.weiyangli.space/"
+title: "蔚洋的博客"
+languageCode: "zh-cn"
+defaultContentLanguage: "zh-cn"
+hasCJKLanguage: true
+theme: "PaperMod"
+
+enableRobotsTXT: true
+enableEmoji: true
+buildDrafts: false
+buildFuture: false
+buildExpired: false
+timeZone: "Asia/Shanghai"
+
+pagination:
+  pagerSize: 10
+
+minify:
+  disableXML: true
+  minifyOutput: true
+
+# JSON 输出给站内搜索用
+outputs:
+  home:
+    - HTML
+    - RSS
+    - JSON
+
+# 归档 / 标签 的 URL
+taxonomies:
+  tag: tags
+  category: categories
+
+permalinks:
+  posts: "/posts/:year/:contentbasename/"   # URL 用文件名，不用中文标题
+  photos: "/photos/:contentbasename/"
+
+params:
+  env: production
+  title: "蔚洋的博客"
+  description: "李蔚洋的个人博客：技术笔记、随笔和照片。"
+  author: "Weiyang Li"
+  keywords: [blog, security, wireless, UAV, photography]
+  images: ["images/og-cover.jpg"]   # 分享卡片默认图，放到 static/images/ 下
+  DateFormat: "2006-01-02"
+  defaultTheme: auto
+  disableThemeToggle: false
+
+  ShowReadingTime: true
+  ShowWordCount: true
+  ShowShareButtons: false
+  ShowPostNavLinks: true
+  ShowBreadCrumbs: true
+  ShowCodeCopyButtons: true
+  ShowRssButtonInSectionTermList: true
+  ShowToc: true
+  TocOpen: false
+  hideSummary: false
+  showtoc: true
+  comments: false
+
+  # 首页列表只放 posts，照片有自己的入口
+  mainSections:
+    - posts
+
+  # 全站默认不加载 KaTeX；需要公式的文章在 front matter 里写 math: true
+  math: false
+
+  assets:
+    disableHLJS: true         # 用 Hugo 自带的 Chroma 高亮，不再加载 highlight.js
+    disableFingerprinting: false
+    favicon: "/favicon.ico"
+    favicon16x16: "/favicon-16x16.png"
+    favicon32x32: "/favicon-32x32.png"
+    apple_touch_icon: "/apple-touch-icon.png"
+
+  label:
+    text: "蔚洋的博客"
+
+  homeInfoParams:
+    Title: "你好 👋"
+    Content: >
+      这里是李蔚洋的个人博客。学术主页在 [weiyangli.space](https://weiyangli.space)，
+      这里放一些技术笔记、读书与生活随笔，以及偶尔拍的照片。
+
+  socialIcons:
+    - name: github
+      url: "https://github.com/Mr3white"
+    - name: googlescholar
+      url: "https://scholar.google.com/citations?user=tJEo8S4AAAAJ"
+    - name: email
+      url: "mailto:weiyangli@stu.cqu.edu.cn"
+    - name: rss
+      url: "/index.xml"
+
+  editPost:
+    URL: "https://github.com/Mr3white/blog/tree/main/content"
+    Text: "在 GitHub 上编辑"
+    appendFilePath: true
+
+  fuseOpts:
+    isCaseSensitive: false
+    shouldSort: true
+    location: 0
+    distance: 1000
+    threshold: 0.4
+    minMatchCharLength: 0
+    keys: ["title", "permalink", "summary", "content"]
+
+menu:
+  main:
+    - identifier: posts
+      name: 文章
+      url: /posts/
+      weight: 10
+    - identifier: photos
+      name: 照片
+      url: /photos/
+      weight: 20
+    - identifier: tags
+      name: 标签
+      url: /tags/
+      weight: 30
+    - identifier: archives
+      name: 归档
+      url: /archives/
+      weight: 40
+    - identifier: search
+      name: 搜索
+      url: /search/
+      weight: 50
+    - identifier: about
+      name: 关于
+      url: /about/
+      weight: 60
+    - identifier: homepage
+      name: "学术主页 ↗"
+      url: https://weiyangli.space
+      weight: 70
+
+markup:
+  goldmark:
+    renderer:
+      unsafe: true            # 允许 Markdown 里直接写 HTML
+    extensions:
+      passthrough:            # 让 $...$ / $$...$$ 原样交给 KaTeX，不被 Markdown 吃掉
+        enable: true
+        delimiters:
+          block: [['\[', '\]'], ['$$', '$$']]
+          inline: [['\(', '\)'], ['$', '$']]
+  highlight:
+    noClasses: false          # 配合 PaperMod 自带的 chroma 样式，支持深色模式
+    codeFences: true
+    guessSyntax: true
+    lineNos: false
+    style: monokai
+  tableOfContents:
+    startLevel: 2
+    endLevel: 4
+
+pygmentsUseClasses: true
+
+# 图片处理默认参数（相册缩略图用）
+imaging:
+  quality: 85
+  resampleFilter: Lanczos
